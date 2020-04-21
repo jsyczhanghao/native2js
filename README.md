@@ -10,4 +10,4 @@ await engine.evaluate('console.log(1)');
 await engine.evaluate('''
   setTimeout(() => {console.log(2)}, 1000);
 ''');
-```# native2js
+```
