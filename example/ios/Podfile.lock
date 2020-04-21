@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - native2js (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - native2js (from `.symlinks/plugins/native2js/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  native2js:
+    :path: ".symlinks/plugins/native2js/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  native2js: fcd4474c849bf35b5afa7f15633e60620552d3a8
+
+PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
+
+COCOAPODS: 1.9.1
