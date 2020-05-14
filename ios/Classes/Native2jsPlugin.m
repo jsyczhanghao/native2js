@@ -18,11 +18,12 @@ static NSMutableDictionary * engines;
   if ([@"init" isEqualToString:call.method]) {
     NSNumber * _id = call.arguments;
     JSContext * engine = engines[_id] = [[JSContext alloc] init];
-    engine[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
-      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-          [function callWithArguments:@[]];
-      });
-    };
+    // 暂时不采用ios实现，采用flutter统一实现
+    // engine[@"setTimeout"] = ^(JSValue* function, JSValue* timeout) {
+    //   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([timeout toInt32] * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+    //       [function callWithArguments:@[]];
+    //   });
+    // };
     //异常处理
     engine.exceptionHandler = ^(JSContext *context, JSValue *exception){
       NSMutableDictionary * res = [[NSMutableDictionary alloc] init];

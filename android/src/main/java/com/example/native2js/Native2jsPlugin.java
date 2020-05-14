@@ -19,7 +19,7 @@ public class Native2jsPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "native2js");
+    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "js.zhang/native2js");
     channel.setMethodCallHandler(this);
   }
 
@@ -33,7 +33,7 @@ public class Native2jsPlugin implements FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "native2js");
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "js.zhang/native2js");
     channel.setMethodCallHandler(new Native2jsPlugin());
   }
 

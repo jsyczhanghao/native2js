@@ -12,7 +12,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  JsEngine engine1 = JsEngine();
+  JsEngine engine1 = JsEngine(onReady: (engine) {
+    engine.evaluate('''
+      var timer = setTimeout(function() {
+        console.log('timer');
+      }, 0);
+
+      //clearTimeout(timer);
+      console.log(timer);
+    ''');
+  });
   JsEngine engine2 = JsEngine();
   int a = 0;
   int b = 0;
@@ -22,6 +31,10 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     engine1.evaluate('let x = $a;');
     engine2.evaluate('let x = $b;');
+    // Future(() async {
+    //   print('get version');
+    //   print(await JsEngine.getAndroidVersion());
+    // });
   }
 
   add1() async {
