@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
       }, 0);
 
       //clearTimeout(timer);
-      console.log(timer);
+      console.log('fdjkfdsjkfs');
     ''');
   });
   JsEngine engine2 = JsEngine();
@@ -29,12 +29,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     engine1.evaluate('let x = $a;');
     engine2.evaluate('let x = $b;');
-    // Future(() async {
-    //   print('get version');
-    //   print(await JsEngine.getAndroidVersion());
-    // });
   }
 
   add1() async {

@@ -13,10 +13,6 @@ class JsEngine {
   static final MethodChannel _channel = const MethodChannel('js.zhang/native2js')..setMethodCallHandler(_handleMethodCall);
   static Map<int, JsEngine> _instances = Map();
 
-  static getAndroidVersion() async {
-    return await _channel.invokeMethod('getPlatformVersion');
-  }
-
   JsEngine({this.injectJs, this.onReady}) {
     _instances[__id = _id++] = this;
     _init();
@@ -24,6 +20,7 @@ class JsEngine {
 
   Future _init() async {
     await _channel.invokeMethod('init', __id);
+    await evaluate('var self = this;');
     await _registerGlobals();
 
     if (injectJs != null) {
@@ -70,9 +67,8 @@ class JsEngine {
     await evaluate('var self = this; var global = self;');
     await register('__log', (dynamic data) => print('js console: ${data.toString()}'));
     await evaluate('var console = {log: function() {[].forEach.call(arguments, function(x) {__log(x);})}};');
-    await evaluate('');
     await register('__callTimer', (Map timer) {
-      double wait = timer['wait'];
+      double wait = timer['wait'] + 0.0;
       Timer(Duration(milliseconds: wait.toInt()), () => evaluate('setTimeout.__call(${timer['id']})'));
     });
     await evaluate('''
